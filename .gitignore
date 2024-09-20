@@ -1,0 +1,57 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+env/
+venv/
+ENV/
+.venv/
+.VENV/
+
+# Environment variables
+.env
+.env.*
+
+# FastAPI specific (e.g., static or media files)
+static/
+media/
+
+# Logs
+*.log
+*.out
+*.err
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+*.pyd
+
+# Test coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Jupyter Notebook (if used)
+.ipynb_checkpoints
+
+# macOS files
+.DS_Store
+
+# Editor specific (VSCode, PyCharm, etc.)
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Docker-related files
+docker-compose.override.yml
