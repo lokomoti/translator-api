@@ -1,3 +1,5 @@
+from typing import Annotated
+
 from fastapi import Depends, FastAPI, status, HTTPException
 
 from api import translation
@@ -11,7 +13,7 @@ app = FastAPI()
 @app.post("/translate")
 def translate(
     translation: Translation,
-    translator: Translator = Depends(translation.get_translator),
+    translator: Annotated[Translator, Depends(translation.get_translator)],
 ):
     """Translation endpoint."""
 
