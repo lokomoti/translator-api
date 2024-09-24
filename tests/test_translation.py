@@ -1,4 +1,5 @@
 import pytest
+
 from api.config import SupportedLanguage
 from api.schemas import Translation
 from api.translation import MockTranslator

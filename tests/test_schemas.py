@@ -1,10 +1,11 @@
 import random
 
 import pytest
+from pydantic import ValidationError
+
 from api import config
 from api.config import SupportedLanguage
 from api.schemas import Translation
-from pydantic import ValidationError
 
 
 def test_translation_valid_data():

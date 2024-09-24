@@ -11,6 +11,7 @@ class SupportedLanguage(StrEnum):
 
     en = auto()
     cs = auto()
+    auto = auto()
 
 
 # Text to translate limits

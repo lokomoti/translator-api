@@ -1,6 +1,7 @@
 from typing import Annotated
 
 from fastapi import Depends, FastAPI, HTTPException, status
+from loguru import logger
 
 from api import translation
 from api.exceptions import TranslatorError
@@ -13,7 +14,9 @@ app = FastAPI()
 @app.post("/translate", response_model=Translation)
 def translate(
     translation: Translation,
-    translator: Annotated[Translator, Depends(MockTranslator)], # Sem by měl potom přijít APITranslator. MockTranslator je jen pro testování a ukázku.
+    translator: Annotated[
+        Translator, Depends(MockTranslator)
+    ],  # Sem by měl potom přijít APITranslator. MockTranslator je jen pro testování a ukázku.
 ):
     """Translation endpoint."""
 
@@ -21,6 +24,8 @@ def translate(
         return translator.translate(translation)
 
     except TranslatorError as e:
+        logger.error(f"Error occured: {e}")  # Doplněno později
+
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Translation failed: {str(e)}",

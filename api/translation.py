@@ -1,11 +1,11 @@
 """Translation module."""
-from typing import Callable
-
 from abc import ABC, abstractmethod
+from typing import Callable
 
 from api.schemas import Translation
 
 # Varianta 1
+
 
 class Translator(ABC):
     """Base translator class."""
@@ -44,9 +44,11 @@ class APITranslator(Translator):
 
 # # Varianta 2
 
-# TranslatorFn = Callable[[Translation], Translation] # V endpointu toto použít jako signature pro DI
+TranslatorFn = Callable[
+    [Translation], Translation
+]  # V endpointu toto použít jako signature pro DI
 
-# def mega_translator(translation: Translation) -> Translation:
-#     translation.text = "Mega."
-#     return translation
 
+def mega_translator(translation: Translation) -> Translation:
+    translation.text = "Mega."
+    return translation
