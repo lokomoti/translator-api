@@ -6,10 +6,12 @@ from fastapi.testclient import TestClient
 from api.config import SupportedLanguage
 from api.main import app
 from api.schemas import Translation
+from api.translation import MockTranslator
 
 
 @pytest.fixture
 def setup_client():
+    app.dependency_overrides[MockTranslator] = MockTranslator
     return TestClient(app)
 
 
