@@ -1,10 +1,11 @@
 import random
 
-from api.config import SupportedLanguage
-from api.schemas import Translation
 import pytest
 from pydantic import ValidationError
+
 from api import config
+from api.config import SupportedLanguage
+from api.schemas import Translation
 
 
 def test_translation_valid_data():
@@ -27,9 +28,9 @@ def test_translation_valid_data():
 
 def test_translation_invalid_text_too_short():
     data = {
-        "text": "", 
+        "text": "",
         "origin_language_code": SupportedLanguage.en,
-        "target_language_code": SupportedLanguage.cs
+        "target_language_code": SupportedLanguage.cs,
     }
     with pytest.raises(ValidationError):
         Translation(**data)
@@ -37,9 +38,9 @@ def test_translation_invalid_text_too_short():
 
 def test_translation_invalid_text_none():
     data = {
-        "text": None, 
+        "text": None,
         "origin_language_code": SupportedLanguage.en,
-        "target_language_code": SupportedLanguage.cs
+        "target_language_code": SupportedLanguage.cs,
     }
     with pytest.raises(ValidationError):
         Translation(**data)
@@ -47,9 +48,9 @@ def test_translation_invalid_text_none():
 
 def test_translation_invalid_text_number():
     data = {
-        "text": 152, 
+        "text": 152,
         "origin_language_code": SupportedLanguage.en,
-        "target_language_code": SupportedLanguage.cs
+        "target_language_code": SupportedLanguage.cs,
     }
     with pytest.raises(ValidationError):
         Translation(**data)
@@ -59,7 +60,7 @@ def test_translation_invalid_text_too_long():
     data = {
         "text": "A" * (config.TEXT_MAX_LENGTH + 1),
         "origin_language_code": config.SupportedLanguage.en,
-        "target_language_code": config.SupportedLanguage.cs
+        "target_language_code": config.SupportedLanguage.cs,
     }
     with pytest.raises(ValidationError):
         Translation(**data)
@@ -69,7 +70,7 @@ def test_translation_invalid_origin_language_code():
     data = {
         "text": "Hello, world!",
         "origin_language_code": "INVALID_CODE",  # Invalid language code
-        "target_language_code": SupportedLanguage.cs
+        "target_language_code": SupportedLanguage.cs,
     }
     with pytest.raises(ValidationError):
         Translation(**data)
@@ -79,7 +80,7 @@ def test_translation_invalid_target_language_code():
     data = {
         "text": "Hello, world!",
         "origin_language_code": SupportedLanguage.en,
-        "target_language_code": "INVALID_CODE"  # Invalid language code
+        "target_language_code": "INVALID_CODE",  # Invalid language code
     }
     with pytest.raises(ValueError):
         Translation(**data)

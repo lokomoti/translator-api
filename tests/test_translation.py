@@ -31,4 +31,3 @@ def test_mock_no_translation_same_language(mock_translator):
     )
     result = mock_translator.translate(translation)
     assert result.text == "hello"
-
