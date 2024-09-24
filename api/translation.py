@@ -1,9 +1,11 @@
 """Translation module."""
+from typing import Callable
 
 from abc import ABC, abstractmethod
 
 from api.schemas import Translation
 
+# Varianta 1
 
 class Translator(ABC):
     """Base translator class."""
@@ -40,6 +42,11 @@ class APITranslator(Translator):
         raise NotImplementedError("Google API translation is not yet implemented.")
 
 
-def get_translator() -> Translator:
-    """Get translator instance for DI."""
-    return MockTranslator()
+# # Varianta 2
+
+# TranslatorFn = Callable[[Translation], Translation] # V endpointu toto použít jako signature pro DI
+
+# def mega_translator(translation: Translation) -> Translation:
+#     translation.text = "Mega."
+#     return translation
+

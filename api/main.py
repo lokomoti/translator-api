@@ -5,7 +5,7 @@ from fastapi import Depends, FastAPI, HTTPException, status
 from api import translation
 from api.exceptions import TranslatorError
 from api.schemas import Translation
-from api.translation import Translator
+from api.translation import MockTranslator, Translator
 
 app = FastAPI()
 
@@ -13,7 +13,7 @@ app = FastAPI()
 @app.post("/translate", response_model=Translation)
 def translate(
     translation: Translation,
-    translator: Annotated[Translator, Depends(translation.get_translator)],
+    translator: Annotated[Translator, Depends(MockTranslator)], # Sem by měl potom přijít APITranslator. MockTranslator je jen pro testování a ukázku.
 ):
     """Translation endpoint."""
 
