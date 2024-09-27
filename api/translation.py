@@ -44,7 +44,7 @@ class APITranslator(Translator):
 
 # # Varianta 2
 
-TranslatorFn = Callable[
+type TranslatorFn = Callable[
     [Translation], Translation
 ]  # V endpointu toto použít jako signature pro DI
 
